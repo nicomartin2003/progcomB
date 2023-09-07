@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos Personales</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Datos Personales</h1>
+    <form id="formulario" action="#" method="post">
+        <label for="nombre">Tu Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="apellido">Tu Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required><br><br>
+
+        <label for="dni">Tu DNI:</label>
+        <input type="number" id="dni" name="dni" required><br><br>
+
+        <label for="fecha_nacimiento">Tu Fecha de Nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
+
+        <label for="domicilio">Tu Domicilio:</label>
+        <input type="text" id="domicilio" name="domicilio" required><br><br>
+
+        <label for="localidad">Tu Localidad:</label>
+        <input type="text" id="localidad" name="localidad" required><br><br>
+
+        <label for="idiomas">Idiomas que conoces:</label><br>
+        <ul>
+            <li>
+                <label for="espanol">Español:</label>
+                <input type="range" id="espanol" name="espanol" min="0" max="100" value="0">
+            </li>
+            <li>
+                <label for="ingles">Inglés:</label>
+                <input type="range" id="ingles" name="ingles" min="0" max="100" value="0">
+            </li>
+            <li>
+                <label for="frances">Francés:</label>
+                <input type="range" id="frances" name="frances" min="0" max="100" value="0">
+            </li>
+            <li>
+                <label for="chino">Chino:</label>
+                <input type="range" id="chino" name="chino" min="0" max="100" value="0">
+            </li>
+        </ul>
+        <br>
+        <input type="submit" value="Enviar">
+        <input type="button" value="Borrar" onclick="borrarDatos()">
+    </form>
+
+    <h2>Datos ingresados:</h2>
+    <div id="datosMostrados"></div>
+
+    <script>
+        function borrarDatos() {
+            document.getElementById("formulario").reset();
+            document.getElementById("datosMostrados").innerHTML = "";
+        }
+
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            let datosMostrados = "<h3>Datos ingresados:</h3>";
+            for (const [key, value] of formData.entries()) {
+                datosMostrados += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+            document.getElementById("datosMostrados").innerHTML = datosMostrados;
+        });
+    </script>
+</body>
+</html>
+
