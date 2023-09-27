@@ -17,13 +17,13 @@ def play():
     word = choose_word()
     attempts = 6
     guessed_letters = []
-    user_letters = []  # Variable para almacenar las letras introducidas por el usuario
+    user_letters = [] 
     
     print("¡Bienvenido al juego de ahorcado!")
     
     while True:
         print("\nPalabra a adivinar: " + display_board(word, guessed_letters))
-        print("Letras introducidas: {}".format(', '.join(user_letters)))  # Mostrando las letras introducidas por el usuario
+        print("Letras introducidas: {}".format(', '.join(user_letters)))  
         letter = input("Ingresa una letra: ").lower()
         
         if letter in user_letters:
@@ -32,12 +32,12 @@ def play():
             print("Ya adivinaste esa letra.")
         elif letter in word:
             guessed_letters.append(letter)
-            user_letters.append(letter)  # Agregando la letra introducida a la lista de letras del usuario
+            user_letters.append(letter)  
             if display_board(word, guessed_letters) == word:
                 print("\n¡Felicidades! ¡Has adivinado la palabra: " + word + "!")
                 break
         else:
-            user_letters.append(letter)  # Agregando la letra introducida a la lista de letras del usuario
+            user_letters.append(letter) 
             attempts -= 1
             print("\nLetra incorrecta. Te quedan {} intentos.".format(attempts))
             
